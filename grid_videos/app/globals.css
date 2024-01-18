@@ -26,12 +26,16 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.btn {
-  @apply font-bold py-2 px-4 rounded;
-}
-.btn-blue {
-  @apply bg-blue-500 text-white;
-}
-.btn-blue:hover {
-  @apply bg-blue-700;
+.player-wrapper {
+  /* Sombra para dar profundidade */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  /* Margem para centralizar e algum espaço ao redor */
+  margin: 2rem auto;
+  
+  /* Bordas arredondadas */
+  border-radius: 8px;
+  
+  /* Overflow escondido para manter os filhos dentro das bordas arredondadas */
+  overflow: hidden;
 }

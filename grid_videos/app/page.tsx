@@ -7,22 +7,22 @@ import React from "react";
 const movies = [
   {
     title: "A volta dos que não foram",
-    thumb: "https://placehold.it/300x200",
+    thumb: "/img/thumb_test.webp",
     video: "/video/test_video.mp4",
   },
   {
     title: "A volta dos que não foram",
-    thumb: "https://placehold.it/300x200",
+    thumb: "/img/thumb_test.webp",
     video: "/video/test_video.mp4",
   },
   {
     title: "A volta dos que não foram",
-    thumb: "https://placehold.it/300x200",
+    thumb: "/img/thumb_test.webp",
     video: "/video/test_video.mp4",
   },
   {
     title: "A volta dos que não foram",
-    thumb: "https://placehold.it/300x200",
+    thumb: "/img/thumb_test.webp",
     video: "/video/test_video.mp4",
   },
 ];
