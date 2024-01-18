@@ -8,19 +8,32 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import VideoPlayer from './VideoPlayer';
 
-// const Transition = React.forwardRef(function Transition(
-//   props: TransitionProps & {
-//     children: React.ReactElement<any, any>;
-//   },
-//   ref: React.Ref<unknown>,
-// ) {
-//   return <Slide direction="up" ref={ref} {...props} />;
-// });
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
-export default function PopUp() {
+type Props = {
+  title?: string;
+  thumb?: string;
+  src?: string;
+  showPopUp: boolean;
+}
+
+
+export default function PopUp(props: Props) {
   const [open, setOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    setOpen(props.showPopUp)
+  }, [props.showPopUp, setOpen])
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -30,29 +43,24 @@ export default function PopUp() {
   };
 
   return (
-    <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Slide in alert dialog
-      </Button>
+    <>
       <Dialog
+        maxWidth="lg"
         open={open}
-        // TransitionComponent={Transition}
+        TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{props.title}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText>
+          <VideoPlayer src={props.src} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
+          <Button onClick={() => setOpen(false)}>Disagree</Button>
+          <Button onClick={() => setOpen(false)}>Agree</Button>
         </DialogActions>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 }
