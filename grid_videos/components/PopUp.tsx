@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import VideoPlayer from './VideoPlayer';
+import Video from '@/model/Video';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -20,9 +21,7 @@ const Transition = React.forwardRef(function Transition(
 });
 
 type Props = {
-  title?: string;
-  thumb?: string;
-  src?: string;
+  dataVideo: Video;
   showPopUp: boolean;
 }
 
@@ -52,13 +51,13 @@ export default function PopUp(props: Props) {
         onClose={() => setOpen(false)}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{props.title}</DialogTitle>
+        <DialogTitle className="text-center">{props.dataVideo.title}</DialogTitle>
         <DialogContent>
-          <VideoPlayer src={props.src} />
+          <VideoPlayer src={props.dataVideo.videoUrl} />
+          <DialogContentText className="text-center"> { props.dataVideo.description}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)}>Disagree</Button>
-          <Button onClick={() => setOpen(false)}>Agree</Button>
+          <Button variant='outlined' onClick={() => setOpen(false)}>Fechar</Button>
         </DialogActions>
       </Dialog>
     </>

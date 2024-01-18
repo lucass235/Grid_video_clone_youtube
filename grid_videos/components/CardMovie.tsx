@@ -6,11 +6,10 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
 import Typography from "@mui/joy/Typography";
 import PopUp from "./PopUp";
+import Video from "@/model/Video";
 
 type Props = {
-  title?: string;
-  thumb?: string;
-  src?: string;
+  dataVideo: Video;
 };
 
 export default function CardMovie(props: Props) {
@@ -22,7 +21,7 @@ export default function CardMovie(props: Props) {
           <button onClick={() => setOpen(!open)}>
             <AspectRatio ratio="2">
               <img
-                src={props.thumb}
+                src={props.dataVideo.thumbnail}
                 srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
                 loading="lazy"
                 alt=""
@@ -31,8 +30,8 @@ export default function CardMovie(props: Props) {
           </button>
         </CardOverflow>
         <CardContent>
-          <Typography level="title-md">Yosemite National Park</Typography>
-          <Typography level="body-sm">California</Typography>
+          <Typography level="title-md">{ props.dataVideo.title}</Typography>
+          <Typography level="body-sm">{ props.dataVideo.userCreator}</Typography>
         </CardContent>
         <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
           <Divider inset="context" />
@@ -42,20 +41,20 @@ export default function CardMovie(props: Props) {
               fontWeight="md"
               textColor="text.secondary"
             >
-              6.3k views
+              {props.dataVideo.views} views
             </Typography>
-            <Divider orientation="vertical" />
+            {/* <Divider orientation="vertical" />
             <Typography
               level="body-xs"
               fontWeight="md"
               textColor="text.secondary"
             >
               1 hour ago
-            </Typography>
+            </Typography> */}
           </CardContent>
         </CardOverflow>
       </Card>
-      <PopUp src={props.src} title={props.title} showPopUp={open} />
+      <PopUp dataVideo={props.dataVideo} showPopUp={open} />
     </>
   );
 }
