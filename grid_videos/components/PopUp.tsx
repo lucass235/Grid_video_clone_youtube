@@ -53,7 +53,7 @@ export default function PopUp(props: Props) {
       >
         <DialogTitle className="text-center">{props.dataVideo.title}</DialogTitle>
         <DialogContent>
-          <VideoPlayer src={"/video/test_video.mp4"} />
+          <VideoPlayer src={props.dataVideo.videoUrl} />
           <DialogContentText className="text-center"> { props.dataVideo.description}</DialogContentText>
         </DialogContent>
         <DialogActions>

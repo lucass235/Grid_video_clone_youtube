@@ -21,7 +21,7 @@ export default function CardMovie(props: Props) {
           <button onClick={() => setOpen(!open)}>
             <AspectRatio ratio="2">
               <img
-                src={"/img/thumb_test.webp"}
+                src={props.dataVideo.thumbnail}
                 srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
                 loading="lazy"
                 alt=""
@@ -43,14 +43,6 @@ export default function CardMovie(props: Props) {
             >
               {props.dataVideo.views} views
             </Typography>
-            {/* <Divider orientation="vertical" />
-            <Typography
-              level="body-xs"
-              fontWeight="md"
-              textColor="text.secondary"
-            >
-              1 hour ago
-            </Typography> */}
           </CardContent>
         </CardOverflow>
       </Card>
