@@ -21,7 +21,7 @@ export default function CardMovie(props: Props) {
           <button onClick={() => setOpen(!open)}>
             <AspectRatio ratio="2">
               <img
-                src={props.dataVideo.thumbnail}
+                src={"/img/thumb_test.webp"}
                 srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
                 loading="lazy"
                 alt=""

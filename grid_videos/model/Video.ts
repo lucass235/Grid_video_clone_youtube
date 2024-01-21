@@ -1,4 +1,5 @@
 interface Video {
+    id?: string;
     title: string;
     userCreator: string;
     description: string;
