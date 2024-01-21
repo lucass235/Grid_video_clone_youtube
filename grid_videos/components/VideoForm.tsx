@@ -4,7 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 
 type Props = {
     video?: Video;
-    onSave?: (video: Video) => void;
+    onSave?: any
 };
 
 const VideoForm = (props: Props) => {
@@ -29,8 +29,7 @@ const VideoForm = (props: Props) => {
     };
 
     const handleSubmit = () => {
-        // props.onSave(formData);
-        console.log(formData);
+        props.onSave(formData);
         handleClose();
     };
 

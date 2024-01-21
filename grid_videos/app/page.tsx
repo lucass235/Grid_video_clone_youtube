@@ -11,10 +11,27 @@ async function getVideos(): Promise<Video[]> {
   return data.data;
 }
 
+async function postVideo(video: Video): Promise<Video> {
+	debugger
+	try {
+		const response = await axios.post('http://localhost:3000/router', video);
+        return response.data.data; // Ajuste isso conforme a estrutura de resposta da sua API
+    } catch (error) {
+        console.error("Erro ao adicionar vídeo:", error);
+        throw error; // Propagar o erro para ser tratado pelo chamador da função
+    }
+}
+
+function handlerVideo(video: Video) {
+	console.log(video);
+	
+	postVideo(video);
+}
+
 export default function Home() {
 
 	const [videos, setVideos] = useState<Video[]>([]);
-	
+ 
 	useEffect(() => {
 		getVideos().then((data) => setVideos(data));
 	}, []);
@@ -31,7 +48,7 @@ export default function Home() {
 				))}
 			</div>
 			<div className='flex items-center justify-center mt-5'>
-				<VideoForm />
+				<VideoForm  onSave={handlerVideo}/>
 			</div>
 		</main>
   	);
