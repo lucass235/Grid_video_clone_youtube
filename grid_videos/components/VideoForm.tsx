@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Video from '@/model/Video';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import CreateIcon from "@mui/icons-material/Create";
@@ -10,6 +10,7 @@ type Props = {
 
 const VideoForm = (props: Props) => {
     const [open, setOpen] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
     const [formData, setFormData] = useState<Video>({
         id: props.video?.id || '',
         title: props.video?.title || '',
@@ -21,6 +22,12 @@ const VideoForm = (props: Props) => {
         views: props.video?.views || 0,
     });
 
+    useEffect(() => {
+        if (props.video) {
+            setIsEdit(true);
+        }
+    }, []);
+
     const handleClickOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -30,7 +37,18 @@ const VideoForm = (props: Props) => {
     };
 
     const handleSubmit = () => {
-        props.onSave(formData);
+
+        props.onSave(formData, isEdit);
+        setFormData({
+            id: '',
+            title: '',
+            userCreator: '',
+            description: '',
+            thumbnail: '',
+            videoUrl: '',
+            duration: 0,
+            views: 0,
+        });
         handleClose();
     };
 

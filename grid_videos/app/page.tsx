@@ -34,36 +34,42 @@ async function putVideo(video: Video) {
 	}
 }
 
-function handlerVideo(video: Video) {
-	// console.log(video);
+function handlerVideo(video: Video, isEdit?: boolean) {                      
 	let res = null;
 	try {
-		res = putVideo(video);
+		isEdit ? res = putVideo(video) : res = postVideo(video);
 	} catch (error) {
 		console.error("Erro ao adicionar vídeo:", error);
 	}
-	console.log(res);
-	
 	return res;
 }
 
 export default function Home() {
 
 	const [videos, setVideos] = useState<Video[]>([]);
+
+	function sortVideos(a: Video, b: Video) {
+		// ordenar por titulo
+		if (a.title < b.title) return -1;
+		if (a.title > b.title) return 1;
+		return 0;
+	}
+
  
 	useEffect(() => {
 		getVideos().then((data) => setVideos(data));
 	}, []);
 	
 	return (
-		<main className=" p-24">
+		<main className="p-24">
 			<div className="flex items-center justify-center">
 				<Typography variant="h2">Clone YouTube</Typography>
 			</div>
 			<div key={1}
-				className="grid grid-cols-3 gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto">
-				{videos.map((video, index) => (
-					<CardMovie key={index} dataVideo={video} onSave={handlerVideo} />
+				className="grid gap-3 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mx-auto">
+				{/* ordena por titulo */}
+				{videos.sort(sortVideos).map((video) => (
+					<CardMovie key={video.id} dataVideo={video} onSave={handlerVideo} />
 				))}
 			</div>
 			<div className='flex items-center justify-center mt-5'>
