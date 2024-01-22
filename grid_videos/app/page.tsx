@@ -7,18 +7,23 @@ import axios from "axios";
 import VideoForm from '@/components/VideoForm';
 
 async function getVideos(): Promise<Video[]> {
-	  const { data } = await axios.get('http://localhost:3000/router');
-  return data.data;
+	try {
+		const response = await axios.get('http://localhost:3000/router');
+		return response.data.data; 
+	} catch (error) {
+		console.error("Erro ao obter vídeos:", error);
+		throw error; 
+	}
 }
 
 async function postVideo(video: Video): Promise<Video> {
 	debugger
 	try {
 		const response = await axios.post('http://localhost:3000/router', video);
-        return response.data.data; // Ajuste isso conforme a estrutura de resposta da sua API
+        return response.data.data;
     } catch (error) {
         console.error("Erro ao adicionar vídeo:", error);
-        throw error; // Propagar o erro para ser tratado pelo chamador da função
+        throw error;
     }
 }
 
