@@ -17,7 +17,6 @@ async function getVideos(): Promise<Video[]> {
 }
 
 async function postVideo(video: Video): Promise<Video> {
-	debugger
 	try {
 		const response = await axios.post('http://localhost:3000/router', video);
         return response.data.data;
