@@ -8,7 +8,7 @@ import VideoForm from '@/components/VideoForm';
 
 async function getVideos(): Promise<Video[]> {
 	try {
-		const response = await axios.get('http://localhost:3000/router');
+		const response = await axios.get('http://localhost:3000/router', { params:  [1,2,3] });
 		return response.data.data; 
 	} catch (error) {
 		console.error("Erro ao obter vídeos:", error);
@@ -16,20 +16,35 @@ async function getVideos(): Promise<Video[]> {
 	}
 }
 
-async function postVideo(video: Video): Promise<Video> {
+async function postVideo(video: Video) {
 	try {
 		const response = await axios.post('http://localhost:3000/router', video);
-        return response.data.data;
+        return response.data
     } catch (error) {
-        console.error("Erro ao adicionar vídeo:", error);
         throw error;
     }
 }
 
+async function putVideo(video: Video) {
+	try {
+		const response = await axios.put('http://localhost:3000/router', video);
+		return response.data
+	} catch (error) {
+		throw error;
+	}
+}
+
 function handlerVideo(video: Video) {
-	console.log(video);
+	// console.log(video);
+	let res = null;
+	try {
+		res = putVideo(video);
+	} catch (error) {
+		console.error("Erro ao adicionar vídeo:", error);
+	}
+	console.log(res);
 	
-	postVideo(video);
+	return res;
 }
 
 export default function Home() {
