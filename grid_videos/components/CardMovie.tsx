@@ -7,9 +7,11 @@ import Divider from "@mui/joy/Divider";
 import Typography from "@mui/joy/Typography";
 import PopUp from "./PopUp";
 import Video from "@/model/Video";
+import VideoForm from "./VideoForm";
 
 type Props = {
-  dataVideo: Video;
+  dataVideo: Video,
+  onSave?: any
 };
 
 export default function CardMovie(props: Props) {
@@ -42,6 +44,9 @@ export default function CardMovie(props: Props) {
               textColor="text.secondary"
             >
               {props.dataVideo.views} views
+            </Typography>
+            <Typography level="body-xs" fontWeight="md" textColor="text.secondary">
+              <VideoForm video={props.dataVideo} onSave={props.onSave} />
             </Typography>
           </CardContent>
         </CardOverflow>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Video from '@/model/Video';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import CreateIcon from "@mui/icons-material/Create";
 
 type Props = {
     video?: Video;
@@ -35,13 +36,17 @@ const VideoForm = (props: Props) => {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                {props.video ? 'Editar' : 'Adicionar'} Vídeo
+            {props.video ?
+            <button onClick={handleClickOpen}>
+                <CreateIcon sx={{ fontSize: 22 }}></CreateIcon>
+            </button> :
+            <Button variant="outlined" onClick={handleClickOpen}>
+                Adicionar video
             </Button>
+            }
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">{props.video ? 'Editar' : 'Adicionar'} Vídeo</DialogTitle>
                 <DialogContent>
-                    {/* Aqui você pode adicionar os TextFields para cada propriedade de vídeo */}
                     <TextField 
                         autoFocus
                         margin="dense"
@@ -122,7 +127,7 @@ const VideoForm = (props: Props) => {
                         Cancelar
                     </Button>
                     <Button onClick={handleSubmit} color="primary">
-                        Salvar
+                        {props.video ? 'Salvar' : 'Adicionar'}
                     </Button>
                 </DialogActions>
             </Dialog>
