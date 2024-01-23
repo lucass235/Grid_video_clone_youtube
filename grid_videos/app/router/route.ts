@@ -2,53 +2,45 @@ import Video from "@/model/Video";
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
+const urlApi: string = "https://lyer5izpf9.execute-api.us-east-1.amazonaws.com/dev";
+
 export async function GET(request: Request) {
-    const res = await fetch('https://lyer5izpf9.execute-api.us-east-1.amazonaws.com/dev');
+    
+    const res = await fetch(urlApi);
     const data = await res.json();
+    
+    
 
     return NextResponse.json({data});
 }
 
 export async function POST(request: NextApiRequest, response: NextApiResponse) {
-    const videoData: Video = {
-        id: "5",
-        title: "titulo teste",
-        userCreator: "user teste",
-        description: "description teste",
-        thumbnail: "/img/thumb_test.webp",
-        videoUrl: "/video/test_video.mp4",
-        duration: 0,
-        views: 0
-    };
-    const res = await fetch('https://lyer5izpf9.execute-api.us-east-1.amazonaws.com/dev', {
-        method: 'POST',
-        body: JSON.stringify(videoData),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    const body: Video = await readRequestBody(request);
+    let res = null;
+    try {
+        res = await fetch(urlApi, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+    } catch (error) {
+        throw error;
+    }
     const data = await res.json();
 
     return NextResponse.json({data});
 }
 
-export async function PUT(request: Request, response: NextApiResponse) {
-    console.log("request", request);
-    console.log("response", response);
+export async function PUT(request: NextApiRequest, response: NextApiResponse) {
+    const body: Video = await readRequestBody(request);
     
-    const videoData: Video = {
-        id: "5",
-        title: "titulo teste lucas",
-        userCreator: "user teste",
-        description: "description teste",
-        thumbnail: "/img/thumb_test.webp",
-        videoUrl: "/video/test_video.mp4",
-        duration: 0,
-        views: 0
-    };
-    const res = await fetch(`https://lyer5izpf9.execute-api.us-east-1.amazonaws.com/dev?id=${videoData.id}`, {
+    const newBody = delete body.id;
+    const res = await fetch(`${urlApi}?id=${body.id}`, {
         method: 'PUT',
-        body: JSON.stringify(videoData),
+        body: JSON.stringify(newBody),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -58,11 +50,22 @@ export async function PUT(request: Request, response: NextApiResponse) {
     return NextResponse.json({data});
 }
 
-export async function DELETE(request: Request, response: NextApiResponse) {
-    const videoId = "5";
-    const res = await fetch(`https://lyer5izpf9.execute-api.us-east-1.amazonaws.com/dev?id=${videoId}`, {
+export async function DELETE(request: NextApiRequest, response: NextApiResponse) {
+    const body: Video = await readRequestBody(request);
+    const videoId: string | undefined = body.id;
+    const res = await fetch(`${urlApi}?id=${videoId}`, {
         method: 'DELETE'
     });
     const data = await res.json();
     return NextResponse.json({ data });
 }
+
+// Função para ler e analisar o corpo da requisição
+async function readRequestBody(request: NextApiRequest) {
+    const chunks = [];
+    for await (const chunk of request.body) {
+      chunks.push(chunk);
+    }
+    const body = Buffer.concat(chunks).toString('utf-8');
+    return JSON.parse(body);
+  }

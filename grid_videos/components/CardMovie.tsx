@@ -8,6 +8,8 @@ import Typography from "@mui/joy/Typography";
 import PopUp from "./PopUp";
 import Video from "@/model/Video";
 import VideoForm from "./VideoForm";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteVideo } from "@/src/api/videoHttp";
 
 type Props = {
   dataVideo: Video,
@@ -47,6 +49,11 @@ export default function CardMovie(props: Props) {
             </Typography>
             <Typography level="body-xs" fontWeight="md" textColor="text.secondary">
               <VideoForm video={props.dataVideo} onSave={props.onSave} />
+            </Typography>
+            <Typography level="body-xs" fontWeight="md" textColor="text.secondary">
+              <button onClick={() => deleteVideo(props.dataVideo)}>
+                <DeleteIcon> </DeleteIcon>
+              </button>
             </Typography>
           </CardContent>
         </CardOverflow>
