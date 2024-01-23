@@ -14,9 +14,8 @@ async function handlerVideo(video: Video, isEdit?: boolean) {
 	} catch (error) {
 		console.error("Erro", error);
 	}
-	// isEdit ? res = await putVideo(video) : res = await postVideo(video);
 		
-	console.log(res);
+	alert(res?.data.data);
 	
 	return res;
 }
@@ -35,8 +34,10 @@ export default function Home() {
  
 	useEffect(() => {
 		getVideos().then((data) => setVideos(data));
+		
 	}, []);
 	
+	console.log(videos);
 	return (
 		<main className="p-24">
 			<div className="flex items-center justify-center">
@@ -44,7 +45,6 @@ export default function Home() {
 			</div>
 			<div key={1}
 				className="grid gap-3 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mx-auto place-items-center">
-				{/* ordena por titulo */}
 				{videos.sort(sortVideos).map((video) => (
 					<CardMovie key={video.id} dataVideo={video} onSave={handlerVideo} />
 				))}

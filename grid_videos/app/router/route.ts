@@ -61,7 +61,7 @@ export async function DELETE(request: NextApiRequest, response: NextApiResponse)
 }
 
 // Função para ler e analisar o corpo da requisição
-async function readRequestBody(request: NextApiRequest) {
+async function readRequestBody(request: NextApiRequest): Promise<Video> {
     const chunks = [];
     for await (const chunk of request.body) {
       chunks.push(chunk);
