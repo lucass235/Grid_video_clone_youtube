@@ -16,13 +16,15 @@ type Props = {
   onSave?: any;
 };
 
-// const deleteVideoResponse = (video: Video) => {
-//     deleteVideo(video).then((data) => console.log(data))
-//     .catch((error) => console.log(error));
-//   return () => {
-//     alert("Video deleted");
-//   };
-// };
+const handlerVideoDelete = async (video: Video) => {
+    try {
+        await deleteVideo(video);
+        alert("Video deleted");
+        window.location.reload();
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 export default function CardMovie(props: Props) {
   const [open, setOpen] = React.useState(false);
@@ -34,7 +36,6 @@ export default function CardMovie(props: Props) {
                     <AspectRatio ratio="2">
                         <img
                             src={props.dataVideo.thumbnail}
-                            srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
                             loading="lazy"
                             alt=""
                         />
@@ -64,7 +65,7 @@ export default function CardMovie(props: Props) {
                         level="body-xs"
                         fontWeight="md"
                         textColor="text.secondary">
-                            <button >
+                            <button onClick={() => handlerVideoDelete(props.dataVideo)}>
                                 <DeleteIcon> </DeleteIcon>
                             </button>
                     </Typography>

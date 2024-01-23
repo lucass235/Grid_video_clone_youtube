@@ -50,7 +50,7 @@ const VideoForm = (props: Props) => {
         setFieldErrors({ ...fieldErrors, [name]: value.trim() === '' });
     };
 
-    const isFormValid = Object.values(fieldErrors).every((error) => error === false);
+    const isFormValid = Object.values(fieldErrors).every((error) => error === false) ;
 
     const handleSubmit = () => {
 
@@ -176,7 +176,7 @@ const VideoForm = (props: Props) => {
                     <Button onClick={handleClose} color="primary">
                         Cancelar
                     </Button>
-                    <Button onClick={handleSubmit} color="primary" disabled={isFormValid}>
+                    <Button onClick={handleSubmit} color="primary" disabled={!isFormValid}>
                         {props.video ? 'Salvar' : 'Adicionar'}
                     </Button>
                 </DialogActions>

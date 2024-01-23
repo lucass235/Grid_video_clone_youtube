@@ -1,11 +1,11 @@
 interface Video {
-    id?: string;
+    id: string;
     title: string;
     userCreator: string;
     description: string;
     thumbnail: string;
     videoUrl: string;
-    duration?: number;
+    duration: number;
     views: number;
 }
     
