@@ -38,8 +38,8 @@ export async function PUT(request: NextApiRequest, response: NextApiResponse) {
         description: body.description,
         thumbnail: body.thumbnail,
         videoUrl: body.videoUrl,
-        duration: body.duration,
-        views: body.views
+        durationVideo: body.durationVideo,
+        viewsVideo: body.viewsVideo
     }
     const res = await fetch(`${urlApi}?id=${body.id}`, {
         method: 'PUT',

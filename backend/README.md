@@ -85,8 +85,8 @@ AWS micro serviço
     "description": "test_postman_description",
     "thumbnail": "/img/thumb_test.webp",
     "videoUrl": "/video/test_video.mp4",
-    "duration": 1000,
-    "views": 45885
+    "durationVideo": 1000,
+    "viewsVideo": 45885
 }
 ```
 
@@ -105,8 +105,8 @@ AWS micro serviço
     "description": "test_postman_description",
     "thumbnail": "/img/thumb_test.webp",
     "videoUrl": "/video/test_video.mp4",
-    "duration": 1000,
-    "views": 45885
+    "durationVideo": 1000,
+    "viewsVideo": 45885
 }
 ```
 

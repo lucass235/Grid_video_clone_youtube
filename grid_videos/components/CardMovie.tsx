@@ -44,7 +44,8 @@ export default function CardMovie(props: Props) {
             </CardOverflow>
             <CardContent>
                 <Typography level="title-md">{props.dataVideo.title}</Typography>
-                <Typography level="body-sm">{props.dataVideo.userCreator}</Typography>
+                  <Typography level="body-sm">{props.dataVideo.userCreator}</Typography>
+                  <Typography level="body-sm">{props.dataVideo.durationVideo} Min</Typography>
             </CardContent>
             <CardOverflow variant="soft" sx={{ bgcolor: "background.level1" }}>
                 <Divider inset="context" />
@@ -53,7 +54,7 @@ export default function CardMovie(props: Props) {
                         level="body-xs"
                         fontWeight="md"
                         textColor="text.secondary">
-                            {props.dataVideo.views} views
+                            {props.dataVideo.viewsVideo} Visualizações
                     </Typography>
                     <Typography
                         level="body-xs"

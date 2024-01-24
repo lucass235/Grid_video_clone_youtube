@@ -42,13 +42,13 @@ def post_item(payload):
         'description': payload['description'],
         'thumbnail': payload['thumbnail'],
         'videoUrl': payload['videoUrl'],
-        'duration': payload['duration'],
-        'views': payload['views']
+        'durationVideo': payload['durationVideo'],
+        'viewsVideo': payload['viewsVideo']
         }
         
-    # Convertendo 'views' e 'duration' para inteiros
-    item['views'] = int(item['views'])
-    item['duration'] = int(item['duration'])    
+    # Convertendo 'viewsVideo' e 'durationVideo' para inteiros
+    item['viewsVideo'] = int(item['viewsVideo'])
+    item['durationVideo'] = int(item['durationVideo'])    
             
     # adiciona o item à tabela
     table.put_item(Item=item)
@@ -75,8 +75,8 @@ def update_item(id_video, data):
         ':description': data['description'], 
         ':thumbnail': data['thumbnail'], 
         ':videoUrl': data['videoUrl'],
-        ':durationVideo': data['duration'],
-        ':viewsVideo': data['views']
+        ':durationVideo': data['durationVideo'],
+        ':viewsVideo': data['viewsVideo']
     }
 
     # Adicione a expressão de atualização para atualizar os valores dos atributos

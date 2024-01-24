@@ -5,8 +5,8 @@ interface Video {
     description: string;
     thumbnail: string;
     videoUrl: string;
-    duration: number;
-    views: number;
+    durationVideo: number;
+    viewsVideo: number;
 }
     
 export default Video;

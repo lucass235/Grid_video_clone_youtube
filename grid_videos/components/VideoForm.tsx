@@ -18,8 +18,8 @@ const VideoForm = (props: Props) => {
         description: props.video?.description || '',
         thumbnail: props.video?.thumbnail || '',
         videoUrl: props.video?.videoUrl || '',
-        duration: props.video?.duration || 0,
-        views: props.video?.views || 0,
+        durationVideo: props.video?.durationVideo || 0,
+        viewsVideo: props.video?.viewsVideo || 0,
     });
 
     const [fieldErrors, setFieldErrors] = useState({
@@ -29,8 +29,8 @@ const VideoForm = (props: Props) => {
         description: false,
         thumbnail: false,
         videoUrl: false,
-        duration: false,
-        views: false,
+        durationVideo: false,
+        viewsVideo: false,
     });
 
     useEffect(() => {
@@ -39,6 +39,22 @@ const VideoForm = (props: Props) => {
         }
     }, []);
 
+    useEffect(() => {
+        setIsEdit(!!props.video);
+
+        // Inicialize os erros de campo com base nos valores iniciais
+        setFieldErrors({
+            id: !props.video?.id,
+            title: !props.video?.title,
+            userCreator: !props.video?.userCreator,
+            description: !props.video?.description,
+            thumbnail: !props.video?.thumbnail,
+            videoUrl: !props.video?.videoUrl,
+            durationVideo: !(props.video?.durationVideo ?? 0 > 0),
+            viewsVideo: !(props.video?.viewsVideo ?? 0 >= 0),
+        });
+    }, [props.video]);
+
     const handleClickOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -46,8 +62,13 @@ const VideoForm = (props: Props) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
 
-        // Validation check (example for required fields)
-        setFieldErrors({ ...fieldErrors, [name]: value.trim() === '' });
+         let isValid = true;
+        if (name === 'durationVideo' || name === 'viewsVideo') {
+            isValid = !isNaN(value) && Number(value) >= 0;
+        } else {
+            isValid = value.trim() !== '';
+        }
+        setFieldErrors({ ...fieldErrors, [name]: !isValid });
     };
 
     const isFormValid = Object.values(fieldErrors).every((error) => error === false) ;
@@ -62,8 +83,8 @@ const VideoForm = (props: Props) => {
             description: '',
             thumbnail: '',
             videoUrl: '',
-            duration: 0,
-            views: 0,
+            durationVideo: 0,
+            viewsVideo: 0,
         });
         handleClose();
     };
@@ -150,25 +171,25 @@ const VideoForm = (props: Props) => {
                         onChange={handleChange}
                     />
                     <TextField
-                        error={fieldErrors.duration}
-                        helperText={fieldErrors.duration ? 'Campo obrigatório' : ''}
+                        error={fieldErrors.durationVideo}
+                        helperText={fieldErrors.durationVideo ? 'Campo obrigatório' : ''}
                         margin="dense"
-                        name="duration"
+                        name="durationVideo"
                         label="Duração"
                         type="number"
                         fullWidth
-                        value={formData.duration}
+                        value={formData.durationVideo}
                         onChange={handleChange}
                     />
                     <TextField
-                        error={fieldErrors.views}
-                        helperText={fieldErrors.views ? 'Campo obrigatório' : ''}
+                        error={fieldErrors.viewsVideo}
+                        helperText={fieldErrors.viewsVideo ? 'Campo obrigatório' : ''}
                         margin="dense"
-                        name="views"
+                        name="viewsVideo"
                         label="Visualizações"
                         type="number"
                         fullWidth
-                        value={formData.views}
+                        value={formData.viewsVideo}
                         onChange={handleChange}
                     />
                 </DialogContent>
