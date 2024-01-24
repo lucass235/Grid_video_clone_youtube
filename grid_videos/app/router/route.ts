@@ -1,6 +1,6 @@
 import Video from "@/model/Video";
-import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextApiRequest} from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 const urlApi: string = "https://lyer5izpf9.execute-api.us-east-1.amazonaws.com/dev";
 
@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     return NextResponse.json({data});
 }
 
-export async function POST(request: NextApiRequest, response: NextApiResponse) {
+export async function POST(request: NextRequest | Request) {
     const body: Video = await readRequestBody(request);
     let res = null;
     try {
@@ -29,7 +29,7 @@ export async function POST(request: NextApiRequest, response: NextApiResponse) {
     return NextResponse.json({data});
 }
 
-export async function PUT(request: NextApiRequest, response: NextApiResponse) {
+export async function PUT(request: NextRequest | Request) {
     const body: any = await readRequestBody(request);
     
     const newBody = {
@@ -53,7 +53,7 @@ export async function PUT(request: NextApiRequest, response: NextApiResponse) {
     return NextResponse.json({data});
 }
 
-export async function DELETE(request: NextApiRequest, response: NextApiResponse) {
+export async function DELETE(request: NextRequest | Request) {
     const body: any = await readRequestBody(request);
     const res = await fetch(`${urlApi}?id=${body.id}`, {
         method: 'DELETE',
@@ -67,7 +67,7 @@ export async function DELETE(request: NextApiRequest, response: NextApiResponse)
 }
 
 // Função para ler e analisar o corpo da requisição
-async function readRequestBody(request: NextApiRequest): Promise<Video> {
+async function readRequestBody(request: NextApiRequest | Request): Promise<Video> {
     const chunks = [];
     for await (const chunk of request.body) {
       chunks.push(chunk);
