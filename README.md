@@ -1,13 +1,13 @@
 
-# Projeto NestJs de um Grid de Vídeos
+# 🚀 Projeto NestJs de um Grid de Vídeos
 
 ## Sobre o Projeto
 
 Este projeto é uma aplicação Next.js que exibe um grid de vídeos com funcionalidades completas de CRUD, permitindo aos usuários adicionar, visualizar, editar e excluir vídeos. No back-end, uma API em Python hospedada na AWS Lambda gerencia a persistência dos dados no DynamoDB, garantindo a integridade e segurança dos dados através de validações rigorosas. O projeto utiliza a API e Router Handler do Next.js para uma integração eficiente front-end/back-end, enquanto o TailwindCSS e o Material-UI são empregados para uma estilização avançada e responsiva, complementados por ícones Material e requisições HTTP eficientes com Axios.
 
-## Tecnologias Utilizadas
+## 💻 Tecnologias Utilizadas
 
-### Front-end
+### 🌐 Front-end
 
 - **ReactJS**: Uma biblioteca JavaScript para construir interfaces de usuário
 - **TypeScript**: Um superset de JavaScript que adiciona tipagem estática
@@ -17,21 +17,21 @@ Este projeto é uma aplicação Next.js que exibe um grid de vídeos com funcion
 - **Axios**: Cliente HTTP baseado em promessas para fazer requisições
 - **Next.js**: Framework React para produção que torna a construção de interfaces de usuário escaláveis e eficientes
 
-### Back-end
+### 🔧 Back-end
 
 - **Python**: Linguagem de programação de alto nível, utilizada para desenvolver a API
 - **AWS Lambda**: Serviço de computação serverless que executa o código em resposta a eventos
 - **AWS DynamoDB**: Banco de dados NoSQL oferecendo desempenho em escala
 - **AWS API Gateway**: Serviço totalmente gerenciado que facilita aos desenvolvedores a publicação, manutenção, monitoramento e proteção de APIs em qualquer escala
 
-## Início Rápido
+## ⚡ Início Rápido
 
-### Pré-requisitos
+### 📋 Pré-requisitos
 
 - Node.js
 - NPM/Yarn
 
-### Configuração do Projeto
+### ⚙️ Configuração do Projeto
 
 1. **Criar o projeto React com Next.js**
 
@@ -59,21 +59,21 @@ Este projeto é uma aplicação Next.js que exibe um grid de vídeos com funcion
     npm install
     ```
 
-## Back-end
+## 💾 Back-end
 
-### AWS Lambda
+### ☁️ AWS
 
 - A documentação detalhada do back-end pode ser encontrada [aqui](./backend/README.md). Lá, você encontrará instruções sobre como configurar e implantar a API Python na AWS Lambda, além de informações sobre a integração com o DynamoDB e o AWS API Gateway.
 
-## Telas da Aplicação
+## 🖥️ Telas da Aplicação
 
-- **Tela Inicial**
+### 📺 Tela Inicial
 
 - Grid de vídeos com funcionalidades completas de CRUD, permitindo aos usuários adicionar, visualizar, editar e excluir vídeos.
 
     ![Tela Inicial](./grid_videos//public/img/grid_videos.png)
 
-- **Tela do formulário de adição e edição dos dados do video**
+### 📝 Tela do formulário de adição e edição dos dados do video
 
 - Botão de adição de um novo video
 
@@ -83,7 +83,7 @@ Este projeto é uma aplicação Next.js que exibe um grid de vídeos com funcion
 
     ![Tela do formulário de adição e edição dos dados do video](./grid_videos//public/img/form_video.png)
 
-- **Tela de visualização do video**
+### ▶️ Tela de visualização do video
 
 - Tela de repdoção do video onde é possível visualizar o video e os dados do video. os botoes de manipulação do video foram feitos usando o Material UI.
 
