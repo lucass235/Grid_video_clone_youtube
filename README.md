@@ -65,3 +65,26 @@ Este projeto é uma aplicação Next.js que exibe um grid de vídeos com funcion
 
 - A documentação detalhada do back-end pode ser encontrada [aqui](./backend/README.md). Lá, você encontrará instruções sobre como configurar e implantar a API Python na AWS Lambda, além de informações sobre a integração com o DynamoDB e o AWS API Gateway.
 
+## Telas da Aplicação
+
+- **Tela Inicial**
+
+- Grid de vídeos com funcionalidades completas de CRUD, permitindo aos usuários adicionar, visualizar, editar e excluir vídeos.
+
+    ![Tela Inicial](./grid_videos//public/img/grid_videos.png)
+
+- **Tela do formulário de adição e edição dos dados do video**
+
+- Botão de adição de um novo video
+
+    ![Tela do formulário de adição e edição dos dados do video](./grid_videos//public/img/botao.png)
+
+- Formulário de adição e edição dos dados do video o botão é dinâmico ser for adição o botão é adicionar se for edição o botão é salvar.
+
+    ![Tela do formulário de adição e edição dos dados do video](./grid_videos//public/img/form_video.png)
+
+- **Tela de visualização do video**
+
+- Tela de repdoção do video onde é possível visualizar o video e os dados do video. os botoes de manipulação do video foram feitos usando o Material UI.
+
+    ![Tela de visualização do video](./grid_videos//public/img/tela_video.png)
