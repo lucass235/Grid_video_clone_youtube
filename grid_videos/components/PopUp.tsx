@@ -12,13 +12,6 @@ import VideoPlayer from "./VideoPlayer";
 import Video from "@/model/Video";
 import { useEffect } from "react";
 
-const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-        children: React.ReactElement<any, any>;
-    }, ref: React.Ref<unknown>) {
-        return <Slide direction="up" ref={ref} {...props} />;
-});
-
 type Props = {
     dataVideo: Video;
     showPopUp: boolean;
@@ -28,18 +21,20 @@ export default function PopUp(props: Props) {
     const [open, setOpen] = React.useState(false);
     const [pause, setPause] = React.useState(false);
 
+    const Transition = React.forwardRef(function Transition(
+        props: TransitionProps & {
+            children: React.ReactElement<any, any>;
+        }, ref: React.Ref<unknown>) {
+            return <Slide direction="up" ref={ref} {...props} />;
+    });
+
     useEffect(() => {
         setOpen(props.showPopUp);
     }, [props.showPopUp, setOpen]);
 
     return (<>
-        <Dialog
-            maxWidth="lg"
-            open={open}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={() => setOpen(false)}
-            aria-describedby="alert-dialog-slide-description">
+        <Dialog maxWidth="lg" open={open} TransitionComponent={Transition} keepMounted
+            onClose={() => setOpen(false)} aria-describedby="alert-dialog-slide-description">
                 <DialogTitle className="text-center">
                     {props.dataVideo.title}
                 </DialogTitle>
@@ -60,6 +55,5 @@ export default function PopUp(props: Props) {
                     </Button>
                 </DialogActions>
         </Dialog>
-    </>
-  );
+    </>);
 }

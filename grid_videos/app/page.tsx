@@ -7,8 +7,6 @@ import VideoForm from '@/components/VideoForm';
 import { getVideos, postVideo, putVideo } from '@/src/api/videoHttp';
 import SearchIcon from "@mui/icons-material/Search";
 
-
-
 export default function Home() {
 	
 	const [videos, setVideos] = useState<Video[]>([]);
@@ -33,7 +31,6 @@ export default function Home() {
         if (a.title > b.title) return 1;
         return 0;
     }
-
 
     useEffect(() => {
         setLoading(true);
@@ -70,17 +67,16 @@ export default function Home() {
                             <TextField className='sm:w-96'
                                 id="input-with-icon-grid"
                                 label="Buscar vídeo"
-                                onChange={handleSearchChange} // Adiciona o manipulador aqui
-                                style={{ backgroundColor: '#ffffff87', borderRadius: 5}}
-                            />
+                                onChange={handleSearchChange}
+                                style={{ backgroundColor: '#ffffff87', borderRadius: 5}}/>
                         </Grid>
                     </Grid>
                 </div>
                 <div key={1}
                     className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto place-items-center mt-8">
-                    {filteredVideos.sort(sortVideos).map((video) => (
-                        <CardMovie key={video.id} dataVideo={video} onSave={handlerVideo} />
-                    ))}
+                        {filteredVideos.sort(sortVideos).map((video) => (
+                            <CardMovie key={video.id} dataVideo={video} onSave={handlerVideo} />
+                        ))}
                 </div>
                 <div className='flex items-center justify-center mt-5'>
                     <VideoForm onSave={handlerVideo} />

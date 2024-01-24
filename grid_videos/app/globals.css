@@ -3,39 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 0, 0, 0;
-    /* --background-start-rgb: 0, 0, 0; */
-    /* --background-end-rgb: 0, 0, 0; */
-  }
+    :root {
+        --foreground-rgb: 0, 0, 0;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
 }
 
 .player-wrapper {
-  /* Sombra para dar profundidade */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
-  /* Margem para centralizar e algum espaço ao redor */
-  margin: 2rem auto;
-  
-  /* Bordas arredondadas */
-  border-radius: 8px;
-  
-  /* Overflow escondido para manter os filhos dentro das bordas arredondadas */
-  overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    border-radius: 8px;
+    overflow: hidden;
 }

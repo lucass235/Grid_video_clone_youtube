@@ -63,15 +63,16 @@ export async function DELETE(request: NextRequest | Request) {
         }
     });
     const data = await res.json();
+
     return NextResponse.json({ data });
 }
 
-// Função para ler e analisar o corpo da requisição
 async function readRequestBody(request: NextApiRequest | Request): Promise<Video> {
     const chunks = [];
     for await (const chunk of request.body) {
-      chunks.push(chunk);
+        chunks.push(chunk);
     }
     const body = Buffer.concat(chunks).toString('utf-8');
+
     return JSON.parse(body);
   }

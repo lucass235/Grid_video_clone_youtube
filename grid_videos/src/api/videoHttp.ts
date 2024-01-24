@@ -2,6 +2,7 @@ import Video from "@/model/Video";
 import axios from "axios";
 
 const defaultUrl: string = "/router";
+
 export async function getVideos(): Promise<Video[]> {
 	try {
 		const response = await axios.get(defaultUrl);
