@@ -2,31 +2,34 @@
 import React, { useState, useEffect } from 'react';
 import CardMovie from "@/components/CardMovie";
 import Video from "@/model/Video";
-import { CircularProgress, Typography } from "@mui/material";
+import { CircularProgress, Grid, TextField, Typography } from "@mui/material";
 import VideoForm from '@/components/VideoForm';
 import { getVideos, postVideo, putVideo } from '@/src/api/videoHttp';
+import SearchIcon from "@mui/icons-material/Search";
 
 
-async function handlerVideo(video: Video, isEdit?: boolean) {
-    let res = null;
-    try {
-        isEdit ? res = await putVideo(video) : res = await postVideo(video);
-    } catch (error) {
-        console.error("Erro", error);
-    }
-
-    alert(res?.data.data);
-    window.location.reload();
-    return res;
-}
 
 export default function Home() {
-
-    const [videos, setVideos] = useState<Video[]>([]);
-    const [loading, setLoading] = useState(true);
+	
+	const [videos, setVideos] = useState<Video[]>([]);
+	const [loading, setLoading] = useState(true);
+	// const [searchTerm, setSearchTerm] = useState("");
+	
+	async function handlerVideo(video: Video, isEdit?: boolean) {
+		let res = null;
+		try {
+			isEdit ? res = await putVideo(video) : res = await postVideo(video);
+		} catch (error) {
+			console.error("Erro", error);
+		}
+	
+		alert(res?.data.data);
+		window.location.reload();
+		return res;
+	}
 
     function sortVideos(a: Video, b: Video) {
-        if (a.title < b.title) return -1;
+		if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
         return 0;
     }
@@ -39,7 +42,17 @@ export default function Home() {
             setLoading(false);
         });
 
-    }, [handlerVideo]);
+	}, []);
+	
+	//  // Atualiza searchTerm quando o campo de busca muda
+    // const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setSearchTerm(event.target.value);
+    // };
+
+    // // Filtra os vídeos com base no searchTerm
+    // const filteredVideos = videos.filter(video => 
+    //     video.title.toLowerCase().includes(searchTerm.toLowerCase())
+    // );
 
     return (<>
         {loading ?
@@ -49,7 +62,22 @@ export default function Home() {
             <main className="p-8 md:p-24"> 
                 <div className="flex items-center justify-center">
                     <Typography variant="h2" style={{ fontWeight: 600, color: 'white'}}>Clone YouTube</Typography>
-                </div>
+				</div>
+				{/* <div className='flex items-center justify-center'>
+                    <Grid color={"white"} container spacing={1} alignItems="flex-end">
+                        <Grid item>
+                            <SearchIcon />
+                        </Grid>
+                        <Grid color={"white"} item>
+                            <TextField
+                                color='info'
+                                id="input-with-icon-grid"
+                                label="Buscar vídeo"
+                                onChange={handleSearchChange} // Adiciona o manipulador aqui
+                            />
+                        </Grid>
+                    </Grid>
+                </div> */}
                 <div key={1}
                     className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto place-items-center mt-8">
                     {videos.sort(sortVideos).map((video) => (
