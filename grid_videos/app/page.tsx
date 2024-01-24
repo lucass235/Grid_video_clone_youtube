@@ -13,7 +13,7 @@ export default function Home() {
 	
 	const [videos, setVideos] = useState<Video[]>([]);
 	const [loading, setLoading] = useState(true);
-	// const [searchTerm, setSearchTerm] = useState("");
+	const [searchTerm, setSearchTerm] = useState("");
 	
 	async function handlerVideo(video: Video, isEdit?: boolean) {
 		let res = null;
@@ -44,43 +44,41 @@ export default function Home() {
 
 	}, []);
 	
-	//  // Atualiza searchTerm quando o campo de busca muda
-    // const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setSearchTerm(event.target.value);
-    // };
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
 
-    // // Filtra os vídeos com base no searchTerm
-    // const filteredVideos = videos.filter(video => 
-    //     video.title.toLowerCase().includes(searchTerm.toLowerCase())
-    // );
+    const filteredVideos = videos.filter(video => 
+        video.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (<>
         {loading ?
             <div className='flex justify-center items-center h-screen'>
                 <CircularProgress size={100} style={{ color: '#1DA1F2' }} />
             </div> :
-            <main className="p-8 md:p-24"> 
-                <div className="flex items-center justify-center">
+            <main className="p-8 md:p-24 flex flex-col items-center justify-center"> 
+                <div>
                     <Typography variant="h2" style={{ fontWeight: 600, color: 'white'}}>Clone YouTube</Typography>
 				</div>
-				{/* <div className='flex items-center justify-center'>
+				<div>
                     <Grid color={"white"} container spacing={1} alignItems="flex-end">
-                        <Grid item>
+                        <Grid item className='mb-4'>
                             <SearchIcon />
                         </Grid>
-                        <Grid color={"white"} item>
-                            <TextField
-                                color='info'
+                        <Grid item>
+                            <TextField className='sm:w-96'
                                 id="input-with-icon-grid"
                                 label="Buscar vídeo"
                                 onChange={handleSearchChange} // Adiciona o manipulador aqui
+                                style={{ backgroundColor: '#ffffff87', borderRadius: 5}}
                             />
                         </Grid>
                     </Grid>
-                </div> */}
+                </div>
                 <div key={1}
                     className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto place-items-center mt-8">
-                    {videos.sort(sortVideos).map((video) => (
+                    {filteredVideos.sort(sortVideos).map((video) => (
                         <CardMovie key={video.id} dataVideo={video} onSave={handlerVideo} />
                     ))}
                 </div>
